@@ -1,0 +1,12 @@
+{
+  "VERSION": "0.0.1",
+  "APP_ENV": "development",
+  "SUPPORTED_ADVOCACY_PLATFORMS": ["TikTok", "Instagram", "Facebook"],
+  "JSON_PARSE_LIMIT_IN_MB": 10,
+  "AVAILABLE_FEATURES": ["ETL", "USERS"],
+  "DEFAULT_ETL_DIRS": {
+    "INPUT": "data/raw",
+    "OUTPUT": "data/transform_success",
+    "FAILED": "data/transform_failed"
+  }
+}

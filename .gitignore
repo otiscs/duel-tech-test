@@ -1,0 +1,39 @@
+# Build and output
+dist/
+build/
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Testing and coverage
+coverage/
+.nyc_output/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Cache files
+.eslintcache
+*.tsbuildinfo
+.npm/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Project specific
+data/
+/src/generated/prisma

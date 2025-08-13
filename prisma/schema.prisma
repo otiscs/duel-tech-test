@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String            @id @default(uuid()) @map("user_id")
+  name              String?
+  email             String?           @unique
+  instagram_handle  String?           @map("instagram_handle")
+  tiktok_handle     String?           @map("tiktok_handle")
+  joined_at         DateTime?         @map("joined_at")
+  advocacy_programs AdvocacyProgram[]
+  created_at        DateTime          @default(now()) @map("created_at")
+  updated_at        DateTime          @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model AdvocacyProgram {
+  id                     String  @id @default(uuid()) @map("program_id")
+  user_id                String  @map("user_id")
+  brand                  String?
+  total_sales_attributed Float?  @map("total_sales_attributed")
+
+  user  User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  tasks Task[]
+
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+
+  @@map("advocacy_programs")
+}
+
+model Task {
+  id                  String  @id @default(uuid()) @map("task_id")
+  advocacy_program_id String  @map("advocacy_program_id")
+  platform            String
+  post_url            String? @map("post_url")
+  likes               Int?
+  comments            Int?
+  shares              Int     @default(0)
+  reach               Int     @default(0)
+
+  advocacy_program AdvocacyProgram @relation(fields: [advocacy_program_id], references: [id], onDelete: Cascade)
+
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+
+  @@map("tasks")
+}
