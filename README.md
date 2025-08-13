@@ -130,9 +130,7 @@ The server will start on http://localhost:3000
 Production mode:
 
 ```
-
 pnpm start
-
 ```
 
 ### API Endpoints
@@ -189,12 +187,10 @@ pnpm start
 ## Example API Usage
 
 ```
-
 curl "http://localhost:3000/api/users?page=1&limit=5"
 curl "http://localhost:3000/api/users/search?q=John"
 curl "http://localhost:3000/api/users/stats"
 curl -X POST "http://localhost:3000/api/etl/process"
-
 ```
 
 ## Data Statistics
@@ -239,7 +235,6 @@ Settings:
 - feature flags
 - default etl directories.
 - env variables will be used if running the etl:process script, unless they are not provided, then they will fallback to the config variables
--
 
 ## Error Handling
 
